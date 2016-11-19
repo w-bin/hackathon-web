@@ -11,6 +11,7 @@ module.exports.getKindsList = function (callback) {
         if (err) {
             console.log(err);
             callback("出了点问题，获取失败...");
+            return;
         }
         client.query('select kind_id,kind_name from kind', [],
             function (err, result) {
@@ -42,6 +43,7 @@ module.exports.getKindOne = function (kindId, callback) {
         if (err) {
             console.log(err);
             callback("出了点问题，获取失败...");
+            return;
         }
         client.query('select kind_id,kind_name from kind where kind_id=$1', [kindId],
             function (err, result) {

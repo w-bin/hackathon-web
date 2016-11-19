@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 var routes = require('./app_server/routes/index');
 var routesApi = require('./app_api/routes/index');
@@ -21,6 +22,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+    resave:false,
+    saveUninitialized: true,
+    secret:'web_4',//防止篡改 cookie
+    key:'web_4',//cookie的名字
+    cookie:{maxAge:1000*60*60*24*30},//cookie的生存期
+}));
 
 app.use('/', routes);
 app.use('/api', routesApi);

@@ -14,14 +14,14 @@ module.exports.getKindsList = function (req, res, next) {
             sendJSONResponse(res, 404, {
                 result: false,
                 err: err,
-                kindList: null
+                kindsList: null
             });
             return;
         }
         sendJSONResponse(res, 200, {
             result: true,
             err: null,
-            kindList: kindList
+            kindsList: kindList
         });
     });
 };

@@ -16,6 +16,7 @@ module.exports.createUser = function (username, password, callback) {
         if (err) {
             console.log(err);
             callback("出了点问题，注册失败...");
+            return;
         }
         client.query('select * from user where username=$1', [username],
             function (err, result) {
@@ -48,6 +49,7 @@ module.exports.login = function (username, password, callback) {
         if (err) {
             console.log(err);
             callback("出了点问题，登陆失败...");
+            return;
         }
         client.query('select user_id,password,role from myuser where username=$1', [username],
             function (err, result) {

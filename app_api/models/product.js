@@ -11,6 +11,7 @@ module.exports.getProductsList = function (callback) {
         if (err) {
             console.log(err);
             callback("出了点问题，获取失败...");
+            return;
         }
         client.query('select product_id,product_name,product_describe,product_price,product_number,' +
             'kind_id,img_url from product', [],
@@ -48,6 +49,7 @@ module.exports.getProductsListByKindId = function (kindId, callback) {
         if (err) {
             console.log(err);
             callback("出了点问题，获取失败...");
+            return;
         }
         client.query('select product_id,product_name,product_describe,product_price,product_number,' +
             'kind_id,img_url from product where kind_id=$1',
@@ -86,6 +88,7 @@ module.exports.getProductOne = function (productId, callback) {
         if (err) {
             console.log(err);
             callback("出了点问题，获取失败...");
+            return;
         }
         client.query('select product_id,product_name,product_describe,product_price,product_number,' +
             'kind_id,img_url from product where product_id=$1',

@@ -9,34 +9,60 @@ var sendJSONResponse = function (res, status, content) {
 };
 
 module.exports.getOrdersList = function (req, res, next) {
-    Order.getOrdersList(req.params.userId,function (err, orders) {
+    Order.getOrdersList(req.params.userId, function (err, ordersList) {
         if (err) {
             sendJSONResponse(res, 404, {
                 result: false,
                 err: err,
-                orders: null
+                ordersList: null
             });
             return;
         }
         sendJSONResponse(res, 200, {
             result: true,
             err: null,
-            orders: orders
+            ordersList: ordersList
         });
     });
 };
 
 module.exports.createOrdersOne = function (req, res, next) {
-
-}
+    Order.createOrdersOne(req.body.userId, req.body.productIdsList, function (err) {
+        if (err) {
+            sendJSONResponse(res, 404, {
+                result: false,
+                err: err
+            });
+            return;
+        }
+        sendJSONResponse(res, 200, {
+            result: true,
+            err: null
+        });
+    });
+};
 
 module.exports.getOrdersOne = function (req, res, next) {
-
+    Order.getOrdersOne(req.params.userId, req.params.orderId, function (err, order) {
+        if (err) {
+            sendJSONResponse(res, 404, {
+                result: false,
+                err: err,
+                order: null
+            });
+            return;
+        }
+        sendJSONResponse(res, 200, {
+            result: true,
+            err: null,
+            order: order
+        });
+    });
 };
 
 module.exports.updateOrdersOne = function (req, res, next) {
 
-}
+};
 
 module.exports.deleteOrdersOne = function (req, res, next) {
 

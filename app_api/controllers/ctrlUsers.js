@@ -18,7 +18,7 @@ module.exports.login = function (req, res) {
     User.login(req.body.username, req.body.password, function (err, user) {
         if (err) {
             console.log(err);
-            sendJSONResponse(res, 404, {
+            sendJSONResponse(res, 200, {
                 result: false,
                 err: err,
                 userId: null
