@@ -1,0 +1,24 @@
+extends layout
+block content
+  .container-fluid
+    .row
+     .col-lg-4.col-md-4.col-sm-4
+     .col-lg-4.col-md-4.col-sm-4.col-xs-12
+       p#tip #{tip}
+       include header.jade
+       form(method='post')
+         .form-group
+           label 用户名
+           input(type='text' required='true' name='username' class='form-control' placeholder='请输入用户名')
+         .form-group
+           label 密码
+           input(type='password' required='true' name='password' class='form-control' placeholder='请输入密码')
+         .form-group
+           label 重复密码
+           input(type='password' required='true' name='password-repeat' class='form-control' placeholder='再输一次密码')
+         .form-group
+           input(type='submit' class='btn btn-primary submit-btn' value='注册')
+     .col-lg-4.col-md-4.col-sm-4
+block append script
+  <!-- 本地 JavaScript 文件 -->
+  script(src="/javascripts/reg.js") 

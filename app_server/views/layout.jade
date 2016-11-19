@@ -3,5 +3,11 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css")
   body
-    block content
+  block content
+  block script
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    script(src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js")
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    script(src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js")
