@@ -4,7 +4,7 @@
 
 var User = require('../models/user');
 
-var sendJSONresponse = function (res, status, content) {
+var sendJSONResponse = function (res, status, content) {
     res.status(status);
     res.json(content);
 };
@@ -18,14 +18,14 @@ module.exports.login = function (req, res) {
     User.login(req.body.username, req.body.password, function (err, user) {
         if (err) {
             console.log(err);
-            sendJSONresponse(res, 404, {
+            sendJSONResponse(res, 404, {
                 result: false,
                 err: err,
                 userId: null
             });
             return;
         }
-        sendJSONresponse(res, 200, {
+        sendJSONResponse(res, 200, {
             result: true,
             err: null,
             userId: user.userId

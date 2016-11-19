@@ -34,14 +34,13 @@ router.post('/kinds', ctrlKinds.createKind);
 router.get('/kinds/:kindId', ctrlKinds.getKindOne);
 router.put('/kinds/:kindId', ctrlKinds.updateKindOne);
 router.delete('/kinds/:kindId', ctrlKinds.deleteKindOne);
+router.get('/kinds/:kindId/products', ctrlProducts.getKindProductsList);
+router.post('/kinds/:kindId/products', ctrlProducts.createProduct);
 
 //商品
 router.get('/products', ctrlProducts.getAllProductsList);
-router.get('/kinds/:kindId/products', ctrlProducts.getKindProductsList);
-router.post('/kinds/:kindId/products', ctrlProducts.createProduct);
-router.get('/kinds/:kindId/products/:products', ctrlProducts.getProductOne);
-router.put('/kinds/:kindId/products/:products', ctrlProducts.updateProductOne);
-router.delete('/kinds/:kindId/products/:products', ctrlProducts.deleteProductOne);
-
+router.get('/products/:productId', ctrlProducts.getProductOne);
+router.put('/products/:productId', ctrlProducts.updateProductOne);
+router.delete('/products/:productId', ctrlProducts.deleteProductOne);
 
 module.exports = router;

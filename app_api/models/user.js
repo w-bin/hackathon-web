@@ -25,7 +25,7 @@ module.exports.createUser = function (username, password, callback) {
                 } else if (result) {
                     callback("用户名已存在...");
                 } else {
-                    client.query('insert into user(username,password) values($1,$2', [username, password],
+                    client.query('insert into user(username,password) values($1,$2)', [username, password],
                         function (err, result) {
                             client.end();
                             if (err) {
