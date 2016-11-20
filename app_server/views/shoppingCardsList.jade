@@ -1,0 +1,40 @@
+extends layout
+block content
+    .container-fluid
+        include indextop.jade
+        p#tip #{tip}
+        .row.my-row
+            .col-lg-2.col-md-2.col-sm-2
+            .col-lg-8.col-md-8.col-sm-8.col-xs-12.main-body
+                form(method='post' action='/ordersTmp')
+                    table.table.table-hover.table-bordered
+                        .thead
+                            tr
+                                td
+                                    input#all-checkbox(type='checkbox')
+                                td.col-sm-3 全选
+                                td.col-sm-3 商品信息
+                                td.col-sm-2 单价
+                                td.col-sm-2 库存
+                                td.col-sm-2 操作
+                        .tbody
+                            each item in shoppingCardsList
+                                tr
+                                    td
+                                        input(type='checkbox' name='checkboxs' value=item.productId)
+                                    td.col-sm-4
+                                        img.img-responsive.order_img(src=item.imgUrl[0])
+                                    td.col-sm-3
+                                        a(href='/products/' + item.productId) #{item.productName}
+                                    td.col-sm-1
+                                        p #{item.productPrice}
+                                    td.col-sm-2
+                                        p #{item.productNumber}
+                                    td.col-sm-1
+                                        a(href='#') 删除
+                    .shopping-cards-submit
+                        span.submit-span 已选0件商品
+                        input(type='submit' class='btn btn-primary' value='生成订单')
+            .col-lg-2.col-md-2.col-sm-2
+block append script
+    script(src='/javascripts/shoppingCards.js')

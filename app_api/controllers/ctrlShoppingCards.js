@@ -27,19 +27,17 @@ module.exports.getShoppingCardsList = function (req, res, next) {
 };
 
 module.exports.createShoppingCardOne = function (req, res, next) {
-    ShoppingCard.createShoppingCardOne(req.body.userId, req.body.productId, req.body.selectedNumber, function (err, shoppingCard) {
+    ShoppingCard.createShoppingCardOne(req.body.userId, req.body.productId, function (err) {
         if (err) {
-            sendJSONResponse(res, 404, {
+            sendJSONResponse(res, 200, {
                 result: false,
-                err: err,
-                shoppingCard: null
+                err: err
             });
             return;
         }
         sendJSONResponse(res, 200, {
             result: true,
-            err: null,
-            shoppingCard: shoppingCard
+            err: null
         });
     });
 };
@@ -62,21 +60,22 @@ module.exports.getShoppingCardOne = function (req, res, next) {
     });
 };
 
-module.exports.updateShoppingCardOne = function (req, res, next) {
-    ShoppingCard.updateShoppingCardOne(req.params.userId, req.params.shoppingCardId, req.params.selectedNumber, function (err) {
-        if (err) {
-            sendJSONResponse(res, 404, {
-                result: false,
-                err: err,
-            });
-            return;
-        }
-        sendJSONResponse(res, 200, {
-            result: true,
-            err: null,
-        });
-    });
-};
+/*
+ module.exports.updateShoppingCardOne = function (req, res, next) {
+ ShoppingCard.updateShoppingCardOne(req.params.userId, req.params.shoppingCardId, req.params.selectedNumber, function (err) {
+ if (err) {
+ sendJSONResponse(res, 404, {
+ result: false,
+ err: err,
+ });
+ return;
+ }
+ sendJSONResponse(res, 200, {
+ result: true,
+ err: null,
+ });
+ });
+ };*/
 
 module.exports.deleteShoppingCardOne = function (req, res, next) {
     ShoppingCard.deleteShoppingCardOne(req.params.userId, req.params.shoppingCardId, function (err) {

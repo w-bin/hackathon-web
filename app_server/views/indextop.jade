@@ -1,0 +1,19 @@
+.row.top-nav
+    .col-lg-1.col-md-1.col-sm-1
+    .col-lg-10.col-md-10.col-sm-10.col-xs-12
+        a.title(href='/') 购物商场
+        div.dropdown.my-dropdown
+            button(class="btn dropdown-toggle" type="button" id="my-dropdown-btn" data-toggle="dropdown")
+                -var username=(user==null?'游客':user.user);
+                span#username= username
+                span.caret
+            ul(class="dropdown-menu" role="menu" aria-labelledby="my-dropdown-btn")
+                li(role="presentation")
+                    a(role="menuitem" tabindex="-1" href="/shoppingCards") 购物车
+                li(role="presentation")
+                    a(role="menuitem" tabindex="-1" href="/orders") 订单
+                li(role="presentation")
+                    a(role="menuitem" tabindex="-1" href="/login") 退出
+        div.own-head
+            img(src="/images/head.jpg" class="own-head-img")
+    .col-lg-1.col-md-1.col-sm-1

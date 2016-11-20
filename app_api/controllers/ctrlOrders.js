@@ -27,7 +27,8 @@ module.exports.getOrdersList = function (req, res, next) {
 };
 
 module.exports.createOrdersOne = function (req, res, next) {
-    Order.createOrdersOne(req.body.userId, req.body.productIdsList, function (err) {
+    console.log('create order req.body = ' + req.body.productsList.length);
+    Order.createOrdersOne(req.body.userId, req.body.productsList, function (err) {
         if (err) {
             sendJSONResponse(res, 404, {
                 result: false,

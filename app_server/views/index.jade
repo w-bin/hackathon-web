@@ -1,5 +1,21 @@
 extends layout
-
 block content
-  h1= title
-  p Welcome to #{title}
+    .container-fluid
+        include indextop.jade
+        .row.my-row
+            .col-lg-1.col-md-1.col-sm-1
+            .col-lg-3.col-md-3.col-sm-3.col-xs-12
+                #left-menu
+                    include leftMenu.jade
+            .col-lg-7.col-md-7.col-sm-7.col-xs-12.main-body
+                block main-content
+                    each item in productsList
+                        .col-lg-4.col-md-4.col-sm-6.col-xs-12.product-item
+                            img.img-responsive.product-img(src=item.imgUrl[0])
+                            p.product-price ￥
+                                strong #{item.price}
+                            a(href='/products/' + item.productId) #{item.name}
+            .col-lg-1.col-md-1.col-sm-1
+block append script
+    script(src='/javascripts/index.js')
+  

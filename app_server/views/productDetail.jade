@@ -1,0 +1,37 @@
+extends layout
+block content
+    .container-fluid
+        include indextop.jade
+        p#tip #{tip}
+        .row.my-row
+            .col-lg-2.col-md-2.col-sm-2
+            .col-lg-8.col-md-8.col-sm-8.col-xs-12.main-body
+                .col-lg-4.col-md-4.col-sm-4.col-xs-12
+                    .product-top-img
+                        img.img-responsive.top-img(src= product.imgUrl[0])
+                    .product-bottom-img
+                        img.bottom-img(src= product.imgUrl[0])
+                        img.bottom-img(src= product.imgUrl[1])
+                        img.bottom-img(src= product.imgUrl[2])
+                .col-lg-8.col-md-8.col-sm-8.col-xs-12
+                    div(class='panel panel-primary')
+                        .panel-heading #{product.name}
+                        .panel-body
+                            p #{product.describe}
+                        form(method='post', action='/shoppingCards')
+                            table.table.table-hover.product-table
+                                .tbody
+                                    tr
+                                        td.col-sm-4.td-title-font 价格
+                                        td.col-sm-8 #{product.price}
+                                    tr
+                                        td.col-sm-4.td-title-font 库存
+                                        td.col-sm-8 #{product.number}
+                                            input(type='hidden' name='productId' value=product.productId)
+                                    tr
+                                        td.col-sm-4
+                                        td.col-sm-8
+                                            input(type='submit' class='btn btn-primary' value='添加到购物车' style='float:right')
+            .col-lg-2.col-md-2.col-sm-2
+block append script
+    script(src='/javascripts/productDetail.js')

@@ -1,0 +1,6 @@
+ul
+    li#index
+        a(href='/') 主页
+    each item in kindsList
+        li.show-li
+            a(href='/kinds/' + item.kindId) #{item.kindName}

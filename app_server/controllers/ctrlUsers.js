@@ -20,8 +20,8 @@ var _showError = function (req, res, status) {
     }
     res.status(status);
     res.render('generic-text', {
-        title : title,
-        content : content
+        title: title,
+        content: content
     });
 };
 
@@ -49,11 +49,11 @@ module.exports.postLogin = function (req, res, next) {
     request(
         requestOptions,
         function (err, response, body) {
+            console.log(response.statusCode + '   ' + body.result);
             if (response.statusCode === 200) {
                 if (body.result == true) {
-                    res.render('index', {
-                        title: '首页'
-                    });
+                    req.session.user = body.user;
+                    res.redirect('/');
                 } else {
                     req.session.tip = body.err;
                     res.redirect('/login');

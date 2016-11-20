@@ -1,0 +1,34 @@
+extends layout
+block content
+    .container-fluid
+        include indextop.jade
+        p#tip #{tip}
+        .row.my-row
+            .col-lg-2.col-md-2.col-sm-2
+            .col-lg-8.col-md-8.col-sm-8.col-xs-12.main-body
+                div(class='panel panel-info')
+                    .panel-heading 订单
+                    table.table.table-hover.table-bordered
+                        .thead
+                            tr
+                                td.col-sm-3 图片
+                                td.col-sm-3 商品信息
+                                td.col-sm-2 单价
+                                td.col-sm-2 购买数量
+                                td.col-sm-2 总价
+                        .tbody
+                            each item in productsList
+                                tr
+                                    td.col-sm-3
+                                        img.img-responsive.order_img(src=item.imgUrl[0])
+                                    td.col-sm-3
+                                        a(href='/products/' + item.productId) #{item.name}
+                                    td.col-sm-2
+                                        p #{item.price}
+                                    td.col-sm-2.order-item-number
+                                        p #{item.buyNumber}
+                                    td.col-sm-2.order-item-price
+                                        p ￥#{item.price}
+            .col-lg-2.col-md-2.col-sm-2
+block append script
+    script(src='/javascripts/orderItem.js')

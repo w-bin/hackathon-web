@@ -18,7 +18,7 @@ router.post('/users', ctrlUsers.createUser);
 router.get('/users/:userId/shoppingCards', ctrlShoppingCards.getShoppingCardsList);
 router.post('/users/:userId/shoppingCards', ctrlShoppingCards.createShoppingCardOne);
 router.get('/users/:userId/shoppingCards/:shoppingCardId', ctrlShoppingCards.getShoppingCardOne);
-router.put('/users/:userId/shoppingCards/:shoppingCardId', ctrlShoppingCards.updateShoppingCardOne);
+//router.put('/users/:userId/shoppingCards/:shoppingCardId', ctrlShoppingCards.updateShoppingCardOne);
 router.delete('/users/:userId/shoppingCards/:shoppingCardId', ctrlShoppingCards.deleteShoppingCardOne);
 
 //订单

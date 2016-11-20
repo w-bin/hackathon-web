@@ -1,4 +1,4 @@
-$(document).ready(function(){
+/*$(document).ready(function(){
 	var errorBlock=$('#tip');
 	if(errorBlock.text().length!=0){
 		errorBlock.attr('padding','10px');
@@ -7,4 +7,4 @@ $(document).ready(function(){
 		errorBlock.attr('padding','0px');
 		errorBlock.hide();
 	}
-});
+});*/

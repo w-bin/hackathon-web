@@ -60,6 +60,9 @@ module.exports.getOrdersList = function (userId, callback) {
 };
 
 module.exports.createOrdersOne = function (userId, productIdsList, callback) {
+    for (var i = 0; i < productIdsList.length; i++) {
+        console.log(i + ' ' + productIdsList[i].productId + '  ' + productIdsList[i].buyNumber + '  ' + productIdsList[i].cardId);
+    }
     if (isNaN(userId)) {
         callback('参数不正确...');
         return;
@@ -79,8 +82,8 @@ module.exports.createOrdersOne = function (userId, productIdsList, callback) {
                     callback("出了点问题，添加失败...");
                 } else {
                     var orderId = result.rows[0].order_id;
-                    console.log('productIdsList = ' + typeof(JSON.parse(productIdsList)));
-                    async.each(JSON.parse(productIdsList), function (product, callback) {
+                    console.log('productIdsList = ' + typeof(productIdsList));
+                    async.each(productIdsList, function (product, callback) {
                         console.log(product + '  ' + product.productId + '  ' + product.buyNumber);
                         client.query('insert into order_and_product(order_id,product_id,buy_number) values($1,$2,$3)',
                             [orderId, product.productId, product.buyNumber],
@@ -97,7 +100,16 @@ module.exports.createOrdersOne = function (userId, productIdsList, callback) {
                                             callback("出了点问题，添加失败...");
                                             return;
                                         }
-                                        callback();
+                                        client.query('update product set product_number=product_number-$1 where product_id=$2',
+                                            [parseInt(product.buyNumber), product.productId], function (err, result) {
+                                                if (err) {
+                                                    console.log(err);
+                                                    callback("出了点问题，添加失败...");
+                                                    return;
+                                                }
+                                                callback();
+                                            });
+                                       // callback();
                                     });
                             });
                     }, function (err) {

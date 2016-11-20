@@ -115,3 +115,26 @@ module.exports.getProductOne = function (productId, callback) {
             });
     });
 };
+
+module.exports.updateProductOne = function (product, callback) {
+    var client = new pg.Client(config);
+    client.connect(function (err) {
+        if (err) {
+            console.log(err);
+            callback("出了点问题，获取失败...");
+            return;
+        }
+        client.query('update product set product_name=$1,product_describe=$2,product_price=$3,product_number=$4,' +
+            'kind_id=$5 where product_id=$6',
+            [product.name, product.describe, product.price, product.number, product.kind, product.productId],
+            function (err, result) {
+                client.end();
+                if (err) {
+                    console.log(err);
+                    callback("出了点问题，更新失败...");
+                } else {
+                    callback(null, product);
+                }
+            });
+    });
+};

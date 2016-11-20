@@ -28,7 +28,8 @@ module.exports.login = function (req, res) {
         sendJSONResponse(res, 200, {
             result: true,
             err: null,
-            userId: user.userId
+            userId: user.userId,
+            user: user
         });
     });
 };

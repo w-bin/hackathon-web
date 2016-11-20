@@ -24,10 +24,6 @@ function checkLevel(req, res, next) {
     next();
 }
 
-/* GET home page. */
-router.get('/', function (req, res, next) {
-    res.render('index', {title: 'Express'});
-});
 
 router.get('/login', ctrlUsers.getLogin);
 router.post('/login', ctrlUsers.postLogin);
@@ -38,6 +34,22 @@ router.post('/reg', ctrlUsers.postReg);
 router.get('/', checkLogin);
 router.get('/', ctrlProducts.getProductsList);
 
+router.get('/', checkLogin);
+router.get('/kinds/:kindId', ctrlProducts.getProductsListByKindId);
+
+router.get('/products/:productId', ctrlProducts.getProductOne);
+
+router.get('/shoppingCards', checkLogin);
+router.get('/shoppingCards', ctrlShoppingCards.getShoppingCardsList);
+router.post('/shoppingCards', checkLogin);
+router.post('/shoppingCards', ctrlShoppingCards.createShoppingCardOne);
+
+router.get('/ordersTmp', checkLogin);
+router.post('/ordersTmp', ctrlOrder.createOrderOneTmp2);
+router.get('/orders', checkLogin);
+router.post('/orders', ctrlOrder.createOrderOne);
+
+//router.post('/products/:productId', ctrlShoppingCards.createShoppingCardOne);
 /*
  //购物车
  router.get('/users/:userId/shoppingCards', ctrlShoppingCards.getShoppingCardsList);
@@ -48,10 +60,10 @@ router.get('/', ctrlProducts.getProductsList);
 
  //订单
  router.get('/users/:userId/orders', ctrlOrder.getOrdersList);
- router.post('/users/:userId/orders', ctrlOrder.createOrdersOne);
- router.get('/users/:userId/orders/:orderId', ctrlOrder.getOrdersOne);
- router.put('/users/:userId/orders/:orderId', ctrlOrder.updateOrdersOne);
- router.delete('/users/:userId/orders/:orderId', ctrlOrder.deleteOrdersOne);
+ router.post('/users/:userId/orders', ctrlOrder.createOrderOne);
+ router.get('/users/:userId/orders/:orderId', ctrlOrder.getOrderOne);
+ router.put('/users/:userId/orders/:orderId', ctrlOrder.updateOrderOne);
+ router.delete('/users/:userId/orders/:orderId', ctrlOrder.deleteOrderOne);
 
  //商品种类
  router.get('/kinds', ctrlKinds.getKindsList);

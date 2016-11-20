@@ -67,7 +67,19 @@ module.exports.getProductOne = function (req, res, next) {
 };
 
 module.exports.updateProductOne = function (req, res, next) {
-
+    Product.updateProductOne(req.body.product, function (err, product) {
+        if (err) {
+            sendJSONResponse(res, 404, {
+                result: false,
+                err: err,
+            });
+            return;
+        }
+        sendJSONResponse(res, 200, {
+            result: true,
+            err: null,
+        });
+    });
 };
 
 module.exports.deleteProductOne = function (req, res, next) {
